@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Air University</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --darkMain: #8C1515;
+            --secondary: #4D4F53;
+            --color1: #F4F4F4;
+            --color2: #FFFFFF;
+        }
+
+        body {
+            font-family: 'Source Sans Pro', sans-serif;
+        }
+
+        h1 {
+            font-size: 65px;
+        }
+
+        p {
+            font-size: 30px;
+        }
+
+        h2 {
+            font-size: 55px;
+            font-weight: 700;
+            text-align: center;
+            margin-top: 4vh;
+            color: black;
+        }
+
+        .para2 {
+            font-size: 28px;
+            font-weight: 200;
+            text-align: center;
+            margin-top: 0.8vh;
+            color: black;
+        }
+
+        /* Top Header Styles */
+        .air-header {
+            background-color: var(--darkMain);
+            color: white;
+            padding: 8px 0;
+        }
+
+        .air-header a {
+            color: white;
+            text-decoration: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .air-header a:hover {
+            opacity: 0.8;
+        }
+
+        /* Navbar Styles */
+        .air-navbar {
+            background-color: white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .air-navbar .navbar-brand {
+            font-family: serif;
+            font-size: 24px;
+            color: var(--darkMain);
+        }
+
+        .air-navbar .nav-link {
+            color: var(--secondary);
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .air-navbar .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--darkMain);
+            transition: width 0.3s ease;
+        }
+
+        .air-navbar .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .air-navbar .nav-link:hover,
+        .air-navbar .nav-link:focus {
+            color: var(--darkMain);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background-image: url('https://portals.au.edu.pk/ICO/Content/images/banner.jpg');
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-title {
+            color: white;
+            font-size: 80px;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Section Styles */
+        .section-title {
+            font-size: 40px;
+            text-align: center;
+            margin-bottom: 32px;
+            color: var(--darkMain);
+            animation: fadeIn 1s ease-out;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 20px;
+            color: var(--secondary);
+            margin-bottom: 48px;
+            animation: fadeIn 1s ease-out;
+        }
+
+        /* Card Styles */
+        .air-card {
+            border: none;
+            border-radius: 8px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+            height: 100%;
+        }
+
+        .air-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            background-color: #f8f9fa;
+        }
+
+        .air-card .card-img-top {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .air-card:hover .card-img-top {
+            transform: scale(1.05);
+        }
+
+        .air-card .card-body {
+            transition: background-color 0.3s ease;
+        }
+
+        .air-card:hover .card-body {
+            background-color: #f1f3f5;
+        }
+
+        #news .air-card .card-img-top {
+            height: 180px;
+        }
+
+        #academics .air-card .card-img-top {
+            height: 220px;
+        }
+
+        #research .air-card .card-img-top {
+            height: 160px;
+        }
+
+        #events .air-card .card-img-top {
+            height: 200px;
+        }
+
+        #health-care .air-card .card-img-top {
+            height: 240px;
+        }
+
+        #campus-life .air-card .card-img-top {
+            height: 180px;
+        }
+
+        #athletics .air-card .card-img-top {
+            height: 150px;
+        }
+
+        #admission .air-card .card-img-top {
+            height: 220px;
+        }
+
+        /* Button Styles */
+        .air-button {
+            background-color: var(--darkMain);
+            color: white;
+            padding: 12px 32px;
+            border: none;
+            border-radius: 4px;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 16px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .air-button:hover {
+            background-color: #6f1111;
+            color: white;
+            text-decoration: none;
+            transform: translateY(-3px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        /* Footer Styles */
+        footer {
+            background-color: var(--darkMain);
+            color: white;
+            padding: 48px 0;
+        }
+
+        footer a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease, transform 0.3s ease;
+            display: inline-block;
+        }
+
+        footer a:hover {
+            color: #f8f9fa;
+            transform: translateX(5px);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Header -->
+    <header class="air-header fixed-top">
+        <div class="container d-flex justify-content-between align-items-center">
+            <span class="d-none d-lg-inline">Air University</span>
+            <div class="d-flex gap-3">
+                <a href="#">Students</a>
+                <a href="#">Faculty & Staff</a>
+                <a href="#">Families</a>
+                <a href="#">Visitors</a>
+                <a href="#">Alumni</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Navigation -->
+    <nav class="navbar navbar-expand-lg air-navbar sticky-top" style="top: 40px;">
+        <div class="container">
+            <a class="navbar-brand" href="#">Air University</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#news">News</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#events">Events</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#academics">Academics</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#research">Research</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#health-care">Health Care</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#campus-life">Campus Life</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#athletics">Athletics</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#admission">Admission</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-overlay">
+            <h1 class="hero-title">Air University</h1>
+        </div>
+    </section>
+
+    <!-- Societal Mission Section -->
+    <section class="py-5" id="about">
+        <div class="container">
+            <h2 class="section-title">A Societal Mission</h2>
+            <p class="text-center mx-auto" style="max-width: 800px;">
+                Air University was founded with a bedrock of societal purpose. Our mission is to contribute to the world by educating students for lives of leadership and contribution with integrity; advancing fundamental knowledge and cultivating creativity; leading in pioneering research for effective clinical therapies; and accelerating solutions and amplifying their impact in the field of aviation and beyond.
+            </p>
+            <div class="text-center mt-4">
+                <a href="#" class="air-button">More about Air University</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- News Section -->
+    <section class="py-5 bg-light" id="news">
+        <div class="container">
+            <h2 class="section-title">Campus News</h2>
+            <p class="section-subtitle">Stories about people, research, and innovation across the campus</p>
+            
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <div class="card air-card h-100">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTfhM8O_c9aU7A1COZcF7iHPOJgG0yq-9KiQQ&s" class="card-img-top" alt="Certifications Ceremony">
+                        <div class="card-body">
+                            <h5 class="card-title">Certifications Ceremony</h5>
+                            <p class="card-text">Students receive certifications for completed courses</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card air-card h-100">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQX-WR1WW0-xRM9o34AYrW3DxLxalqg3F2lDQ&s" class="card-img-top" alt="Cultural Event">
+                        <div class="card-body">
+                            <h5 class="card-title">Cultural Event</h5>
+                            <p class="card-text">Extracurricular activities enrich university life</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card air-card h-100">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTd-ZtZVy-KG0qCN1anMLIXA3fFQl1QVHht9g&s" class="card-img-top" alt="Seminar">
+                        <div class="card-body">
+                            <h5 class="card-title">Seminar</h5>
+                            <p class="card-text">Quality seminars enhance student learning at Air University</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-4">
+                <a href="#" class="air-button">More campus news</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Academics Section -->
+    <section class="py-5" id="academics">
+        <div class="container">
+            <h2 class="section-title">Academics</h2>
+            <p class="section-subtitle">Explore our diverse range of programs and departments</p>
+            
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <div class="card air-card h-100">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSwL5CfdIoXFS-LGs4EMUgW95PaiVRksEmQSg&s" class="card-img-top" alt="Seminar">
+                        <div class="card-body">
+                            <h3 class="card-title">Undergraduate Programs</h3>
+                            <ul class="list-unstyled">
+                                <li>Aerospace Engineering</li>
+                                <li>Computer Science</li>
+                                <li>Electrical Engineering</li>
+                                <li>Business Administration</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4 ">
+                    <div class="card air-card h-100">
+                        <img src="https://www.au.edu.pk/Pages/NewsEvents/EventGallary/115_9.jpg" class="card-img-top" alt="Seminar">
+                        <div class="card-body">
+                            <h3 class="card-title">Graduate Programs</h3>
+                            <ul class="list-unstyled">
+                                <li>Avionics Engineering</li>
+                                <li>Data Science</li>
+                                <li>Cyber Security</li>
+                                <li>Aviation Management</li>
+                                <li>Business Management</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card air-card h-100">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ1JlD0utLCK6N6kRYgXLDQyH56Io64p4ZmAg&s" class="card-img-top" alt="Seminar">
+                        <div class="card-body">
+                            <h3 class="card-title">Research Centers</h3>
+                            <ul class="list-unstyled">
+                                <li>Center for Aerospace Research</li>
+                                <li>Artificial Intelligence Lab</li>
+                                <li>Aviation Safety Institute</li>
+                                <li>Cyber Security Research Center</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-4">
+                <a href="#" class="air-button">Explore all programs</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Research Section -->
+    <section class="py-5 bg-light" id="research">
+        <div class="container">
+            <h2 class="section-title">Research</h2>
+            <p class="section-subtitle">Driving discoveries vital to our world, our health, and our intellectual life</p>
+            
+            <div class="row text-center">
+                <div class="col-md-4 mb-4">
+                    <div class="card air-card h-100">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcScgYmoMESno30dLxc_9fKO96vielEl-9Vq9g&s" class="card-img-top" alt="Seminar">
+                        <div class="card-body">
+                            <h3 class="card-title">15 Institutes</h3>
+                            <p class="card-text">cross disciplinary boundaries</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card air-card h-100">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQmXutpWbELkIvu2jNK5d30WOy9e7GShrVx3A&s" class="card-img-top" alt="Seminar">
+                        <div class="card-body">
+                            <h3 class="card-title">20 Libraries</h3>
+                            <p class="card-text">hold over 12 million items</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card air-card h-100">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSwL5CfdIoXFS-LGs4EMUgW95PaiVRksEmQSg&s" class="card-img-top" alt="Seminar">
+                        <div class="card-body">
+                            <h3 class="card-title">$1.98 Billion</h3>
+                            <p class="card-text">sponsored research budget</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-4">
+                <a href="#" class="air-button">More about research</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Events Section -->
+    <section class="py-5" id="events">
+        <div class="container">
+            <h2 class="section-title">Upcoming Events</h2>
+            <p class="section-subtitle">Join us for these exciting campus events</p>
+            
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <div class="card air-card h-100">
+                        <img src="https://i.ytimg.com/vi/U_X3IqUxEgc/maxresdefault.jpg" class="card-img-top" alt="Seminar">
+                        <div class="card-body">
+                            <h5 class="card-title">MAY 15</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">Aviation Technology Symposium</h6>
+                            <p class="card-text">Explore the latest advancements in aviation technology</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card air-card h-100">
+                        <img src="https://au.edu.pk/Pages/NewsEvents/EventGallary/43_8.jpg" class="card-img-top " alt="Seminar">
+                        <div class="card-body">
+                            <h5 class="card-title">JUN 2</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">Alumni Networking Night</h6>
+                            <p class="card-text">Connect with fellow Air University graduates</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card air-card h-100">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRzQ5anhUPKy1HU3ruf207FN-8_Q7i9zEV1AA&s" class="card-img-top" alt="Seminar">
+                        <div class="card-body">
+                            <h5 class="card-title">JUN 10</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">Open House for Prospective Students</h6>
+                            <p class="card-text">Learn about our programs and campus life</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-4">
+                <a href="#" class="air-button">View all events</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Health Care Section -->
+    <section class="py-5 bg-light" id="health-care">
+        <div class="container">
+            <h2 class="section-title">Health Care</h2>
+            <p class="section-subtitle">Providing top-notch medical care and research</p>
+            
+            <div class="row">
+                <div class="col-md-6 mb-4">
+                    <div class="card air-card h-100">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRxVcDZLeO1_1OLns73ganuCcy2eVN9tPbWPg&s" class="card-img-top" alt="Seminar">
+                        <div class="card-body">
+                            <h3 class="card-title">Air University Medical Center</h3>
+                            <p class="card-text">Our state-of-the-art medical center offers comprehensive health care services to students, faculty, and the community.</p>
+                            <a href="#" class="air-button">Learn more</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <div class="card air-card h-100">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS40qt-o0bFv6CNR8KDEJIOOO3hhatQOPgePg&s" class="card-img-top " alt="Seminar">
+                        <div class="card-body">
+                            <h3 class="card-title">Research and Innovation</h3>
+                            <p class="card-text">We're at the forefront of medical research, focusing on aerospace medicine and the unique health challenges of aviation.</p>
+                            <a href="#" class="air-button">Explore our research</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Campus Life Section -->
+    <section class="py-5" id="campus-life">
+        <div class="container">
+            <h2 class="section-title">Campus Life</h2>
+            <p class="section-subtitle">Experience the vibrant community at Air University</p>
+            
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <div class="card air-card h-100">
+                        <img src="https://www.au.edu.pk/AU_New_Assets/images/blog/FCAI3.jpg" class="card-img-top" alt="Seminar">
+                        <div class="card-body">
+                            <h3 class="card-title">Student Organizations</h3>
+                            <p class="card-text">Join one of our 100+ student-run clubs and organizations.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card air-card h-100">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRAmPQP18teUOYHYv8owAIbOnma8jtxt3HBDw&s" class="card-img-top" alt="Seminar">
+                        <div class="card-body">
+                            <h3 class="card-title">Housing</h3>
+                            <p class="card-text">Explore our comfortable and convenient on-campus living options.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card air-card h-100">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQRatCq_WznrpR1N_GPPmmvGeyMB8xw8CoJNVf7Qp5BePnaG4P4UZr81qfV0mPwPmA9FYE&usqp=CAU" class="card-img-top" alt="Seminar">
+                        <div class="card-body">
+                            <h3 class="card-title">Dining</h3>
+                            <p class="card-text">Enjoy a variety of culinary options across our dining halls and cafes.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-4">
+                <a href="#" class="air-button">Discover campus life</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Athletics Section -->
+    <section class="py-5 bg-light" id="athletics">
+        <div class="container">
+            <h2 class="section-title">Athletics</h2>
+            <p class="section-subtitle">Soar high with Air University sports</p>
+            
+            <div class="row text-center">
+                <div class="col-md-3 mb-4">
+                    <div class="card air-card h-100">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRkeGloETyA5pnecynLLKYwXDBbC72Lt_zEAA&s" class="card-img-top" alt="Seminar">
+                        <div class="card-body">
+                            <div class="display-4 mb-3">⚽</div>
+                            <h4 class="card-title">Soccer</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <div class="card air-card h-100">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTR4PuZP5EnfODIFnrDl1BysFF3P8Zp_QtpsA&s" class="card-img-top" alt="Seminar">
+                        <div class="card-body">
+                            <div class="display-4 mb-3">🏀</div>
+                            <h4 class="card-title">Basketball</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <div class="card air-card h-100">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRhu0ZpUNrLmTAD2kOK9Zypn_TX5x3AWoZwrg&s" class="card-img-top" alt="Seminar">
+                        <div class="card-body">
+                            <div class="display-4 mb-3">🏐</div>
+                            <h4 class="card-title">Volleyball</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <div class="card air-card h-100">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT069CkSBaa5emN-Dw2efT4aEA-5u8SxoYstQ&s" class="card-img-top" alt="Seminar">
+                        <div class="card-body">
+                            <div class="display-4 mb-3">🏃</div>
+                            <h4 class="card-title">Track & Field</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-4">
+                <a href="#" class="air-button">Explore athletics</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Admission Section -->
+    <section class="py-5" id="admission">
+        <div class="container">
+            <h2 class="section-title">Admission</h2>
+            <p class="section-subtitle">Your journey to Air University starts here</p>
+            
+            <div class="row">
+                <div class="col-md-6 mb-4">
+                    <div class="card air-card h-100">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQWe6KBJVbkRJda4V-86AFnzgFhbipBrN7xTQ&s" class="card-img-top" alt="Seminar">
+                        <div class="card-body">
+                            <h3 class="card-title">Undergraduate Admission</h3>
+                            <p class="card-text">Learn about our application process, requirements, and deadlines for first-year and transfer students.</p>
+                            <a href="#" class="air-button">Apply now</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <div class="card air-card h-100">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRyj5AEN6f-5tf0jbltgSkjnSY-4RxIza2_Dg&s" class="card-img-top" alt="Seminar">
+                        <div class="card-body">
+                            <h3 class="card-title">Graduate Admission</h3>
+                            <p class="card-text">Explore our graduate programs and find out how to apply for master's and doctoral degrees.</p>
+                            <a href="#" class="air-button">Graduate programs</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <h5>Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#">Ads and Tender</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">Feedback</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h5>Resources</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#">Library</a></li>
+                        <li><a href="#">IT Services</a></li>
+                        <li><a href="#">Student Portal</a></li>
+                        <li><a href="#">Faculty Portal</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h5>Connect with Us</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#"><i class="fab fa-facebook-f"></i> Facebook</a></li>
+                        <li><a href="#"><i class="fab fa-twitter"></i> Twitter</a></li>
+                        <li><a href="#"><i class="fab fa-linkedin-in"></i> LinkedIn</a></li>
+                        <li><a href="#"><i class="fab fa-instagram"></i> Instagram</a></li>
+                    </ul>
+                </div>
+            </div>
+            <hr class="my-4 bg-light">
+            <div class="row">
+                <div class="col-md-6 mb-4">
+                    <h5>Contact Information</h5>
+                    <p>Phone: (051) 9262557</p>
+                    <p>Address: Service Road E-9 / E-8, Islamabad, Pakistan, E-9, Islamabad, Islamabad Capital Territory 44000</p>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <h5>Our Campuses</h5>
+                    <ul class="list-unstyled">
+                        <li>Air University Multan Campus</li>
+                        <li>Air University Kharian Campus</li>
+                        <li>Air University Kamra Campus</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="text-center mt-4">
+                <p>&copy; 2024 Air University. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Add scroll behavior for navbar
+        window.addEventListener('scroll', function() {
+            var navbar = document.querySelector('.air-navbar');
+            if (window.scrollY > 100) {
+                navbar.classList.add('fixed-top');
+                navbar.style.top = '0';
+            } else {
+                navbar.classList.remove('fixed-top');
+                navbar.style.top = '40px';
+            }
+        });
+    </script>
+</body>
+</html>
