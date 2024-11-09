@@ -16,6 +16,12 @@
 
         body {
             font-family: 'Source Sans Pro', sans-serif;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        body.dark-mode {
+            background-color: #333;
+            color: #fff;
         }
 
         h1 {
@@ -34,6 +40,10 @@
             color: black;
         }
 
+        .dark-mode h2 {
+            color: white;
+        }
+
         .para2 {
             font-size: 28px;
             font-weight: 200;
@@ -42,11 +52,16 @@
             color: black;
         }
 
+        .dark-mode .para2 {
+            color: white;
+        }
+
         /* Top Header Styles */
         .air-header {
-            background-color: var(--darkMain);
+            background-color: rgba(140, 21, 21, 0.8);
             color: white;
             padding: 8px 0;
+            transition: background-color 0.3s;
         }
 
         .air-header a {
@@ -61,20 +76,46 @@
 
         /* Navbar Styles */
         .air-navbar {
+            background-color: transparent;
+            transition: background-color 0.3s, box-shadow 0.3s;
+        }
+
+        .air-navbar.scrolled {
             background-color: white;
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .dark-mode .air-navbar.scrolled {
+            background-color: #222;
         }
 
         .air-navbar .navbar-brand {
             font-family: serif;
             font-size: 24px;
+            color: white;
+            transition: color 0.3s;
+        }
+
+        .air-navbar.scrolled .navbar-brand {
             color: var(--darkMain);
         }
 
+        .dark-mode .air-navbar.scrolled .navbar-brand {
+            color: white;
+        }
+
         .air-navbar .nav-link {
-            color: var(--secondary);
+            color: white;
             transition: color 0.3s ease;
             position: relative;
+        }
+
+        .air-navbar.scrolled .nav-link {
+            color: var(--secondary);
+        }
+
+        .dark-mode .air-navbar.scrolled .nav-link {
+            color: #ddd;
         }
 
         .air-navbar .nav-link::after {
@@ -95,6 +136,11 @@
         .air-navbar .nav-link:hover,
         .air-navbar .nav-link:focus {
             color: var(--darkMain);
+        }
+
+        .dark-mode .air-navbar .nav-link:hover,
+        .dark-mode .air-navbar .nav-link:focus {
+            color: #fff;
         }
 
         /* Hero Section */
@@ -174,6 +220,10 @@
             background-color: #f8f9fa;
         }
 
+        .dark-mode .air-card:hover {
+            background-color: #444;
+        }
+
         .air-card .card-img-top {
             width: 100%;
             height: 200px;
@@ -193,36 +243,8 @@
             background-color: #f1f3f5;
         }
 
-        #news .air-card .card-img-top {
-            height: 180px;
-        }
-
-        #academics .air-card .card-img-top {
-            height: 220px;
-        }
-
-        #research .air-card .card-img-top {
-            height: 160px;
-        }
-
-        #events .air-card .card-img-top {
-            height: 200px;
-        }
-
-        #health-care .air-card .card-img-top {
-            height: 240px;
-        }
-
-        #campus-life .air-card .card-img-top {
-            height: 180px;
-        }
-
-        #athletics .air-card .card-img-top {
-            height: 150px;
-        }
-
-        #admission .air-card .card-img-top {
-            height: 220px;
+        .dark-mode .air-card:hover .card-body {
+            background-color: #333;
         }
 
         /* Button Styles */
@@ -265,6 +287,30 @@
             transform: translateX(5px);
         }
 
+        /* Dark mode toggle button */
+        .dark-mode-toggle {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+            background-color: var(--darkMain);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            font-size: 24px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .dark-mode-toggle:hover {
+            background-color: #6f1111;
+        }
+
         @keyframes fadeIn {
             from { opacity: 0; }
             to { opacity: 1; }
@@ -287,7 +333,7 @@
     </header>
 
     <!-- Main Navigation -->
-    <nav class="navbar navbar-expand-lg air-navbar sticky-top" style="top: 40px;">
+    <nav class="navbar navbar-expand-lg air-navbar fixed-top" style="top: 40px;">
         <div class="container">
             <a class="navbar-brand" href="#">Air University</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -753,19 +799,35 @@
         </div>
     </footer>
 
+    <!-- Dark mode toggle button -->
+    <button class="dark-mode-toggle" onclick="toggleDarkMode()">🌙</button>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- <script>
+    <script>
         // Add scroll behavior for navbar
         window.addEventListener('scroll', function() {
             var navbar = document.querySelector('.air-navbar');
             if (window.scrollY > 100) {
-                navbar.classList.add('fixed-top');
-                navbar.style.top = '0';
+                navbar.classList.add('scrolled');
             } else {
-                navbar.classList.remove('fixed-top');
-                navbar.style.top = '40px';
+                navbar.classList.remove('scrolled');
             }
         });
-    </script> -->
+
+        // Dark mode toggle function
+        function toggleDarkMode() {
+            const body = document.body;
+            const toggleButton = document.querySelector('.dark-mode-toggle');
+            
+            body.classList.toggle('dark-mode');
+            
+            if (body.classList.contains('dark-mode')) {
+                toggleButton.textContent = '☀️';  // Sun icon for light mode
+            } else {
+                toggleButton.textContent = '🌙';  // Moon icon for dark mode
+            }
+        }
+    </script>
 </body>
 </html>
+
